@@ -13,3 +13,26 @@ The choice of a one-year period with hourly predictions was made to allow the mo
 ## Data Set
 The data used in this project were extracted from the complete historical records of INMET for the region of Seropédica, in the state of Rio de Janeiro, Brazil, where EMBRAPA is located. This data set includes various climate measurements recorded hourly since 2002. For this project, we exclusively used the variable 'TEMPERATURA DO AR - BULBO SECO, HORÁRIA (°C)', which provided a robust base for training the models. Below is a sample of the data used:
 
+## Data Preprocessing
+Common Preprocessing for Both Models
+- **Standardizing Date and Time Format:** Ensured a consistent format for the date and time feature.
+- **Handling Missing Values:** Identified intervals with missing temperature values and imputed them with the mean value. (Other approaches were considered but showed no significant impact on model performance, thus the simplest method with minimal processing load was chosen.)
+- **Correcting Erroneous Values:** Detected instances where the temperature was incorrectly recorded as -9999. Applied the same imputation method used for missing values.
+
+### Prophet Model
+Feature Requirements:
+Only required the date and target variable (temperature). No additional features were created.
+### XGBoost Model
+- **Feature Engineering:** Created new features based on the date: hour, dayofweek, quarter, month, year, dayofyear, dayofmonth, weekofyear, and season.
+- **Data Analysis:** Conducted various analyses to better understand the data and identify key points for model development:
+- **Temperature Distribution:** The air temperature distribution approximates a normal distribution (see image below).
+  ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Distribution of Air Temperature.png)
+- **Temperature Range:** 50% of recorded temperatures fall within a 5°C range, from 21°C to 26°C. Note that this analysis was impacted by the imputed mean values (see image below).
+ ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Boxplot of Air Temperature.png)
+- **Missing Data Impact:** Visualized the distribution by year to identify four significant gaps in 2002, 2004, 2010, and 2019 (see image below).
+ ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Missing values.png)
+- **Seasonal Influence:** Identified the impact of seasons on temperature variation. The highest median temperature was in autumn and the lowest in spring, while the highest and lowest recorded temperatures were in summer and winter, respectively (see image below).
+ ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Season.png)
+- **Daily Temperature Variation:** Analyzed temperature variation throughout the day (see image below).
+- ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Hour.png)
+- **Data Preparation:** Applied MinMaxScaler to all features, and a logarithmic transformation to the target variable to stabilize variance and normalize distribution.
