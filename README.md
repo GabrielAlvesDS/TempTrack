@@ -26,13 +26,13 @@ Only required the date and target variable (temperature). No additional features
 - **Feature Engineering:** Created new features based on the date: hour, dayofweek, quarter, month, year, dayofyear, dayofmonth, weekofyear, and season.
 - **Data Analysis:** Conducted various analyses to better understand the data and identify key points for model development:
 - **Temperature Distribution:** The air temperature distribution approximates a normal distribution (see image below).
-  ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Distribution of Air Temperature.png)
+  ![img1](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Distribution%of%Air%Temperature.png)
 - **Temperature Range:** 50% of recorded temperatures fall within a 5°C range, from 21°C to 26°C. Note that this analysis was impacted by the imputed mean values (see image below).
- ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Boxplot of Air Temperature.png)
+ ![img2](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Boxplot%of%Air%Temperature.png)
 - **Missing Data Impact:** Visualized the distribution by year to identify four significant gaps in 2002, 2004, 2010, and 2019 (see image below).
- ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Missing values.png)
+ ![img3](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Missing%values.png)
 - **Seasonal Influence:** Identified the impact of seasons on temperature variation. The highest median temperature was in autumn and the lowest in spring, while the highest and lowest recorded temperatures were in summer and winter, respectively (see image below).
- ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Season.png)
+ ![img4](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Season.png)
 - **Daily Temperature Variation:** Analyzed temperature variation throughout the day (see image below).
-- ![cover](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Hour.png)
+- ![img5](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/Hour.png)
 - **Data Preparation:** Applied MinMaxScaler to all features, and a logarithmic transformation to the target variable to stabilize variance and normalize distribution.
