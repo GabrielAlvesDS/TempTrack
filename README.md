@@ -51,3 +51,18 @@ Only required the date and target variable (temperature). No additional features
 <br>
 
 - **Data Preparation:** Applied MinMaxScaler to all features, and a logarithmic transformation to the target variable to stabilize variance and normalize distribution.
+
+## Model training
+The data was divided into training and testing sets, with the training set containing data from 2002 to 2022 and the testing set including only the last year, 2023.
+
+### Prophet Model
+
+
+### XGBoost Model
+Initially, a basic model fit was performed to establish a baseline. Cross-validation was then applied to evaluate the model's performance using metrics such as MAE, MAPE, RMSE, and MSE.
+
+To enhance the model, a hyperparameter tuning step was carried out using the Optuna library, which helps find the optimal values for parameters like learning rate, maximum tree depth, and the number of estimators.
+
+With the best hyperparameters identified, the final model was trained. After training, predictions were made on the test set, and error metrics were calculated to assess the model's performance, focusing on its accuracy in predicting hourly temperatures.
+
+This process allowed for fine-tuning the model, maximizing its accuracy and generalization ability to new data.
