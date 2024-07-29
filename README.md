@@ -56,15 +56,34 @@ Only required the date and target variable (temperature). No additional features
 The data was divided into training and testing sets, with the training set containing data from 2002 to 2022 and the testing set including only the last year, 2023.
 
 ### Prophet Model
+**Initial Model**
+A basic Prophet model was initially trained to establish a performance baseline. Cross-validation was performed using the cross_validation function with the parameters: an initial period of 1825 days, a period of 90 days, and a horizon of 365 days, utilizing parallel processing to evaluate the model’s performance. This provided metrics such as MAE, MAPE, RMSE, and MSE to assess the accuracy of the model's predictions. The results of these metrics are presented in the graph below, with an average RMSE of 3.02.
 
+ ![img6](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/InitialModel.png)
+
+**Hyperparameter Tuning**
+To enhance the Prophet model's performance, two rounds of hyperparameter tuning were carried out. This approach allowed for focused adjustments and reduced computational complexity, but may miss optimal interactions between parameters.
+
+**Seasonality Parameters:**
+- Various combinations of period and fourier_order for seasonal components were tested.
+- A grid search approach was used to find the best parameters.
+- Each combination was evaluated by fitting a model on the training data and predicting on the test data, with RMSE being the primary metric for comparison.
+- The results of this tuning are presented in the table below, showing the performance for different parameter settings.
+
+ ![img7](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/SeasonalityParanetersTuning.png)
+
+**Changepoint and Seasonality Priors:**
+- A second tuning phase focused on changepoint_prior_scale, seasonality_prior_scale, and seasonality_mode.
+- Another grid search was performed to identify the optimal settings for these parameters.
+- Similar to the first phase, models were evaluated based on their RMSE values.
+- The outcomes of this tuning are detailed in the table below, which presents the performance metrics for various parameter configurations.
+
+ ![img8](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/ChangepointandSeasonalityPriorsTuning.png)
 
 ### XGBoost Model
 Initially, a basic model fit was performed to establish a baseline. Cross-validation was then applied to evaluate the model's performance using metrics such as MAE, MAPE, RMSE, and MSE.
-
 To enhance the model, a hyperparameter tuning step was carried out using the Optuna library, which helps find the optimal values for parameters like learning rate, maximum tree depth, and the number of estimators.
-
 With the best hyperparameters identified, the final model was trained. After training, predictions were made on the test set, and error metrics were calculated to assess the model's performance, focusing on its accuracy in predicting hourly temperatures.
-
 This process allowed for fine-tuning the model, maximizing its accuracy and generalization ability to new data.
 
 
@@ -79,6 +98,10 @@ The performance of the Prophet model was assessed using the following metrics:
 - Mean Absolute Percentage Error (MAPE): 9.96%
 
 The Prophet model shows an RMSE of 3.25°C and an MAE of 2.47°C, indicating that the predictions deviate from actual temperatures by these amounts on average. Additionally, the MAPE of 9.96% suggests that the average prediction error is about 9.96% relative to the actual values. The Prophet model was notably easier to implement, as it required no additional feature creation and achieved these results without the need for hyperparameter tuning.
+
+The following graph presents the observed vs. predicted air temperature for the year 2023:
+ ![img9](https://github.com/GabrielAlvesDS/TempTrack/blob/main/img/ObservedvsPredictedAirTemperature2023.png)
+
 
 ### XGBoost
 The performance of the final XGBoost model was assessed using the following metrics:
